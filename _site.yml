@@ -14,4 +14,4 @@ navbar:
     - text: "RevBayes exercise"
       href: exercise-01.html
     - text: "BEAST2 exercise"
-      href: exercise-02.html
+      href: https://taming-the-beast.org/tutorials/FBD-tutorial/
