@@ -8,7 +8,7 @@ title: "Bayesian divergence time estimation"
 
 These exercises focus on the use of the fossilised birth-death (FBD) process for Bayesian divergence time estimation using a dataset of living and extinct bears.
 
-1. Dating [exercise](exercise-01.html) using morphology in  [RevBayes](https://revbayes.github.io) 
+1. Dating [exercise](exercise-01.html) using morphology and molecular data in  [RevBayes](https://revbayes.github.io) 
 2. Dating [exercise](https://taming-the-beast.org/tutorials/FBD-tutorial/) using molecular data and taxonomic constraints in [BEAST2](https://www.beast2.org/)
 
 You will also need to install the software [Tracer](http://beast.community/tracer) and [FigTree](https://github.com/rambaut/figtree/releases).
