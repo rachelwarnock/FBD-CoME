@@ -287,14 +287,15 @@ RevBayes</h1>
 <li><a href="#next">Next tasks</a></li>
 </ul>
 <p>In this exercise we’ll estimate a time tree of bears under the
-fossilised birth-death (FBD) process. We’ll use a <a
+fossilised birth-death (FBD) process. We’ll start by using a <a
 href="data/bears_morphology.nex">morphological matrix</a> that comprises
-62 binary characters for 18 living and fossil bears. We’ll also use <a
-href="data/bears_taxa.tsv">age information</a> associated with our taxa.
-Download these files and examine the contents. The exercise is adapted
-from this <a href="https://hal.inria.fr/PGE/hal-02536394">published
-version</a> of the exercise, which contains more background
-information.</p>
+62 binary characters for 18 living and fossil bears. Later we’ll add a
+<a href="data/bears_cytb.nex">molecular partition</a> for the living
+bear species. We’ll also use <a href="data/bears_taxa.tsv">age
+information</a> associated with our taxa. Download these files and
+examine the contents. The exercise is adapted from this <a
+href="https://hal.inria.fr/PGE/hal-02536394">published version</a> of
+the exercise, which contains more background information.</p>
 </div>
 <div id="software" class="section level4">
 <h4>Software</h4>
@@ -562,15 +563,14 @@ mccTree(trace, file = &quot;output/bears_FBD_morpho+cytb.mcc.tre&quot;, positive
 <div id="running-the-analysis-under-the-fbd-model-only"
 class="section level3">
 <h3>Running the analysis under the FBD model only</h3>
-<p>Try running the analysis “under the prior”. Simply add
-<code>underPrior = TRUE</code> to the MCMC run function.</p>
-<pre class="r"><code>mymcmc.run(generations = 10000, tuningInterval = 1000, underPrior = TRUE)</code></pre>
+<p>Try running the analysis “under the prior”. The
+<code>ignoreData</code> allows us to exclude the morphological and
+molecular partitions.</p>
+<pre class="r"><code>mymodel.ignoreData(morpho)
+mymodel.ignoreData(cytb)</code></pre>
 <p>Note it’s a bit funny to refer to this as “under the prior” because
 the fossil ages are data but RevBayes doesn’t consider the FBD as part
-of the likelihood it prints out, so you can still choose the regular
-option for running the analysis under the prior to distinguish the
-signal coming from the FBD/fossil age data vs. the FBD combined with the
-sequence/morpho data.</p>
+of the likelihood it prints out.</p>
 <blockquote>
 <p>Compare you results to the posterior obtained using in the previous
 steps. What information do we gain from the morphological / molecular

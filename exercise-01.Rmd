@@ -21,7 +21,8 @@ knitr::opts_chunk$set(echo = TRUE)
 * [Evaluating the output](#output)
 * [Next tasks](#next)
 
-In this exercise we'll estimate a time tree of bears under the fossilised birth-death (FBD) process. We'll use a [morphological matrix](data/bears_morphology.nex) that comprises 62 binary characters for 18 living and fossil bears. We'll also use [age information](data/bears_taxa.tsv) associated with our taxa. Download these files and examine the contents. The exercise is adapted from this [published version](https://hal.inria.fr/PGE/hal-02536394) of the exercise, which contains more background information.
+In this exercise we'll estimate a time tree of bears under the fossilised birth-death (FBD) process. We'll start by using a [morphological matrix](data/bears_morphology.nex) that comprises 62 binary characters for 18 living and fossil bears. Later we'll add a [molecular partition](data/bears_cytb.nex) for the living bear species.
+We'll also use [age information](data/bears_taxa.tsv) associated with our taxa. Download these files and examine the contents. The exercise is adapted from this [published version](https://hal.inria.fr/PGE/hal-02536394) of the exercise, which contains more background information.
 
 #### Software 
 
@@ -343,13 +344,16 @@ That's it!
 
 ### Running the analysis under the FBD model only
 
-Try running the analysis "under the prior". Simply add `underPrior = TRUE` to the MCMC run function.
+Try running the analysis "under the prior". The `ignoreData` allows us to exclude the morphological and molecular partitions.
 
 ```{r prior, eval=FALSE}
-mymcmc.run(generations = 10000, tuningInterval = 1000, underPrior = TRUE)
+
+mymodel.ignoreData(morpho)
+mymodel.ignoreData(cytb)
+
 ```
 
-Note it's a bit funny to refer to this as "under the prior" because the fossil ages are data but RevBayes doesn't consider the FBD as part of the likelihood it prints out, so you can still choose the regular option for running the analysis under the prior to distinguish the signal coming from the FBD/fossil age data vs. the FBD combined with the sequence/morpho data. 
+Note it's a bit funny to refer to this as "under the prior" because the fossil ages are data but RevBayes doesn't consider the FBD as part of the likelihood it prints out. 
 
 > Compare you results to the posterior obtained using in the previous steps. What information do we gain from the morphological / molecular data?
 
